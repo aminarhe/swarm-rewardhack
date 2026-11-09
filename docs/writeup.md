@@ -15,9 +15,9 @@ but transcript inspection shows the agents **never called `library_read`**, so t
 never entered their context. The contagion channel was present but unused; `seed_library` on vs.
 off changed nothing because neither group saw the seed. We therefore make **no** robustness
 claim yet. The real result so far is methodological: honest agents do not consult the shared
-library unprompted, so contagion must be induced (as GDM explicitly encouraged board use). We
-then prompt agents to check the library first and re-test. Exploratory; single model, small
-samples.
+library unprompted, so contagion must be induced (as GDM explicitly encouraged board use). Once prompted to check the library first, agents do read it — but then exhaust their budget
+before submitting, so adoption is still untested: on a small model, measuring contagion is
+budget-bound once the channel is forced open. Exploratory; single model, small samples.
 
 ## Testbed
 
@@ -47,8 +47,12 @@ samples.
    `['submit_answer','submit_answer']` with **no `library_read`** — the agents never read the
    board, so the seed could not influence them. This invalidates any "resisted the hack"
    reading of findings 1-2: the hack was never seen.
-4. **Prompted-library re-test.** [PENDING: with agents instructed to check the library first,
-   does a seeded hack get adopted?]
+4. **Prompted-library re-test (easy, seeded, --limit 2).** With agents told to check the
+   library first, `library_read` now fires in every sample — the channel is active. But **no
+   submission completed** (labels: {}): agents spent their full token/time budget reading and
+   reasoning and hit the limits before calling `submit_answer`. Adoption stays untested; the
+   binding constraint became budget, not behaviour. Immediate next step: thinking off and/or
+   higher limits so agents reach a submission after reading the board.
 
 **Label validation (hand-read, easy noseed).** Submissions were a single correct
 `ANSWER: 47712` with genuine digit-counting reasoning in the `<think>` content — "solved"
