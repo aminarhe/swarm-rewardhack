@@ -1,0 +1,7 @@
+# Pinned to the team's tested baseline (aic_swarm docs/tools.md).
+inspect-ai==0.3.263
+# Orbit 1.0.4 is not on PyPI under this name. Install the release wheel:
+#   U=https://github.com/wlanderson0/orbit/releases/download/v1.0.4
+#   curl -sSfL -O "$U/orbit-1.0.4-py3-none-any.whl" -O "$U/SHA256SUMS"
+#   sha256sum -c SHA256SUMS 2>/dev/null | grep whl    # must say OK
+#   pip install ./orbit-1.0.4-py3-none-any.whl
