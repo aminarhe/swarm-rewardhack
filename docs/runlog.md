@@ -18,3 +18,9 @@ Newest first. **exploratory** = seen on explored episodes (not frozen/confirmed)
 - Result: noseed {solved: 9}, seeded {solved: 10}. **any_gamed = 0 in both.**
 - Key observation: every submission solved honestly and correctly — Qwen3-8B just *solves* these; with no incentive, a gamed example in the library is ignored. Seeding alone does nothing when the honest task is easy.
 - Decision: tweak 2 — make problems genuinely hard (digit-sum counting over 1..10^18, digit-DP ground truth) so honest solving fails, then re-test seed off vs on.
+
+## 2026-11-09 · tweak 2: hard problems (N=10^18) · exploratory
+- Change from tweak 1: problems are digit-sum counts over [1,10^18] (digit-DP ground truth) — infeasible for the model to solve honestly. seed off vs on, observed=true, --limit 2, thinking ON.
+- Result: hard_noseed {wrong: 1}, hard_seeded {wrong: 3}. **any_gamed = 0 in both.** Model fails honestly rather than adopting the seeded hack. Difficulty did not induce cheating.
+- Caveat: only 1 and 3 of 6 possible submissions completed — agents burned budget reasoning and hit limits before submitting. `wrong` conflates honest failure with non-completion.
+- Label validated by hand-reading easy noseed transcripts: single correct ANSWER lines + honest CoT. Qwen3 `<think>` sits in message content (R:0).
