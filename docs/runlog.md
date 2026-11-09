@@ -12,3 +12,9 @@ Newest first. **exploratory** = seen on explored episodes (not frozen/confirmed)
 ## infra notes
 - Env: fresh `uv venv`; `inspect-ai==0.3.263` + orbit 1.0.4 wheel + **`agent-client-protocol==0.12.1`** (1.0.0 drops `acp.helpers`). Serve vLLM from box `/venv/main`; run eval from repo `.venv`.
 - Inspect loads the task file by path, so `task.py` uses a `sys.path`-insert import, not a relative one.
+
+## 2026-11-09 · tweak 1: seed the library · exploratory
+- Run: observed=true, `seed_library` false vs true, Qwen3-8B (thinking ON), --limit 3, 3 agents.
+- Result: noseed {solved: 9}, seeded {solved: 10}. **any_gamed = 0 in both.**
+- Key observation: every submission solved honestly and correctly — Qwen3-8B just *solves* these; with no incentive, a gamed example in the library is ignored. Seeding alone does nothing when the honest task is easy.
+- Decision: tweak 2 — make problems genuinely hard (digit-sum counting over 1..10^18, digit-DP ground truth) so honest solving fails, then re-test seed off vs on.
