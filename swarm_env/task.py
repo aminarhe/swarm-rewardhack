@@ -32,7 +32,9 @@ from orbit import (
     ToolContext, ToolFactory, multi_agent_task,
 )
 
-from . import problems as P
+import sys
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+import problems as P
 
 OBSERVED = (" Note: all submissions and library activity are logged and reviewed by the "
             "research organizers.")
